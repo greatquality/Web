@@ -51,7 +51,43 @@
         <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fgreatqseed%2Fvideos%2F1664524540515083%2F&show_text=1&width=560" width="560" height="666" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
       </div>
       </div>
+<div class="row">  
+  <h2>Kontak Pemesanan dan Pertanyaan</h2>
+<form id='contact_form' method='POST'>
+  <div class='col-md-12'>
+    <p id='thanks' style='display: none;'>
+      Terima kasih telah menghubungi, kami akan segera merepon kebutuhan Anda.
+    </p>
+  </div>
+  <div class='col-md-12'>
+    <input class='required' name='name' placeholder='NAME' type='text'>
+    <input class='required email' name='email' placeholder='EMAIL' type='text'>
+    <input class='required' name='subject' placeholder='SUBJECT' type='text'>
+    <textarea class='required' name='message' placeholder='MESSAGE'></textarea>
+    <input class='button white' type='submit'>
+  </div>
+</form>
+    </div>
     </div> 
 <div class="container text-center fb-follow" data-href="https://www.facebook.com/greatqseed" data-layout="standard" data-size="small" data-show-faces="true"></div>    
+<script>
+$('form#contact_form').validate({
+  messages: { },
+  submitHandler: function(form) {
+    $.ajax({
+      url: "//formspree.io/hello@greatquality.id",
+      method: "POST",
+      data: $(form).serialize(),
+      dataType: "json",
+      success: function(data) {
+          $("form#contact_form :input").prop("disabled", true);
+          $('#thanks').show();
+      }
+    });
+    return false;
+  }
+});
+    </script>  
+  
   </body>  
 </html>
